@@ -1,7 +1,5 @@
-
 pub fn run() -> usize {
     let input = get_input();
-    let mut acc = 0usize;
     let mut vec1: Vec<usize> = Vec::new();
     let mut vec2: Vec<usize> = Vec::new();
     let it = input.lines();
@@ -16,9 +14,9 @@ pub fn run() -> usize {
     vec2.sort();
     assert_eq!(vec1.len(), vec2.len());
     let i = vec1.iter().zip(vec2.iter());
-    let i= i.map(|pair: (&usize, &usize)| pair.0.abs_diff(*pair.1));
-    let sum = i.fold(0, |acc, x| acc + x);
-    sum
+    let i = i.map(|pair: (&usize, &usize)| pair.0.abs_diff(*pair.1));
+    
+    i.sum::<usize>()
 }
 
 fn get_input() -> String {
@@ -1021,5 +1019,6 @@ fn get_input() -> String {
 60040   82705
 10256   95591
 49049   90283
-37768   43279".to_string()
+37768   43279"
+        .to_string()
 }
