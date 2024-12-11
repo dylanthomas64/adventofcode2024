@@ -3,7 +3,7 @@ use std::collections::HashMap;
 pub fn run(input: String) -> usize {
     let mut total: usize = 0;
     let mut order_map = HashMap::<u8, Vec<u8>>::new();
-    let mut it = input.lines();
+    let it = input.lines();
     let split_position = it.clone().position(|s| s.is_empty()).unwrap();
     let rules: String = it
         .clone()
@@ -23,10 +23,10 @@ pub fn run(input: String) -> usize {
         let value = rule.next().unwrap();
 
         let key = rule.next().unwrap();
-        if order_map.contains_key(&key) {
-            order_map.entry(key).and_modify(|v| v.push(value));
+        if let std::collections::hash_map::Entry::Vacant(e) = order_map.entry(key) {
+            e.insert(vec![value]);
         } else {
-            order_map.insert(key, vec![value]);
+            order_map.entry(key).and_modify(|v| v.push(value));
         }
     }
 
@@ -44,7 +44,7 @@ pub fn run(input: String) -> usize {
             if let Some(v) = order_map.get(&c) {
                 // for each value entry check if it exists somewhere in the remainder of to sequence iterator
                 for i in v {
-                    if let Some(_) = report_it.clone().find(|item| item == i) {
+                    if report_it.clone().any(|item| &item == i) {
                         success = false;
                     }
                 }
@@ -56,15 +56,6 @@ pub fn run(input: String) -> usize {
         }
     }
     total
-}
-
-#[cfg(test)]
-mod test {
-    use super::*;
-    #[test]
-    fn test1() {
-        assert_eq!(143, run(get_test_input()))
-    }
 }
 
 fn get_test_input() -> String {
@@ -98,4 +89,13 @@ fn get_test_input() -> String {
 61,13,29
 97,13,75,29,47",
     )
+}
+
+#[cfg(test)]
+mod test {
+    use super::*;
+    #[test]
+    fn test1() {
+        assert_eq!(143, run(get_test_input()))
+    }
 }
