@@ -15,7 +15,7 @@ pub fn run() -> usize {
     assert_eq!(vec1.len(), vec2.len());
     let i = vec1.iter().zip(vec2.iter());
     let i = i.map(|pair: (&usize, &usize)| pair.0.abs_diff(*pair.1));
-    
+
     i.sum::<usize>()
 }
 

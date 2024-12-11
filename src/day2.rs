@@ -6,10 +6,14 @@ pub fn run() -> usize {
     let lines = input.lines();
     for line in lines {
         let v = line.split_whitespace().map(|x| x.parse::<usize>().unwrap());
-        if v.clone().is_sorted_by(|a, b| a < b) && v.clone().is_sorted_by(|a, b| (1..=3).contains(&(b - a))) {
+        if v.clone().is_sorted_by(|a, b| a < b)
+            && v.clone().is_sorted_by(|a, b| (1..=3).contains(&(b - a)))
+        {
             safe_reports += 1;
         }
-        if v.clone().is_sorted_by(|a, b| a > b) && v.clone().is_sorted_by(|a, b| (1..=3).contains(&(a - b))) {
+        if v.clone().is_sorted_by(|a, b| a > b)
+            && v.clone().is_sorted_by(|a, b| (1..=3).contains(&(a - b)))
+        {
             safe_reports += 1;
         }
     }
