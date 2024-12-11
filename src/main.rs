@@ -7,7 +7,7 @@ mod day4;
 mod day5;
 
 fn main() {
-
+    println!("day5 == {}", day5::run(parse_text()))
 }
 
 fn parse_text() -> String {

@@ -131,7 +131,8 @@ MXMXAXMASX",
 }
 
 pub fn get_test_input2() -> String {
-    String::from(".M.S......
+    String::from(
+        ".M.S......
 ..A..MSMS.
 .M.S.MAA..
 ..A.ASMSM.
@@ -140,7 +141,8 @@ pub fn get_test_input2() -> String {
 S.S.S.S.S.
 .A.A.A.A..
 M.M.M.M.M.
-..........")
+..........",
+    )
 }
 
 #[cfg(test)]
